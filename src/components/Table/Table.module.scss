@@ -99,17 +99,23 @@
           background-color: rgb(255, 255, 230);
         }
 
-        td.LoadingCell {
-          text-align: center;
-          padding: 50px;
+        td {
+          &.LoadingCell {
+            text-align: center;
+            padding: 50px;
+  
+            .Loading {
+              color: $seaGreen;
+            }
+          }
 
-          .Loading {
-            color: $seaGreen;
+          a.email {
+            color: $seaGreen
           }
         }
-      }
+
     }
   }
 }
 
-
+}

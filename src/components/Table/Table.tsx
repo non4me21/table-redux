@@ -76,7 +76,7 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
         const tableRow = tableConfig.body.map(cell => {
           let content = dataRow[cell.key];
           if (cell.type === 'email') {
-            content = <a href={`mailto:${dataRow.email}`}>{dataRow.email}</a>
+            content = <a className={styles.email} href={`mailto:${dataRow.email}`}>{dataRow.email}</a>
           } else if (cell.type === 'phone') {
             content = <a href={`tel:${dataRow.phone}`}>{dataRow.phone}</a>
           }
