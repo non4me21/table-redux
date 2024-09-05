@@ -1,0 +1,42 @@
+{
+  "headers": [
+    {
+      "name": "ID",
+      "key": "id"
+    },
+    {
+      "name": "Name",
+      "key": "name"
+    },
+    {
+      "name": "Username",
+      "key": "username"
+    },
+    {
+      "name": "Email",
+      "key": "email"
+    },
+    {
+      "name": "Phone Number",
+      "key": "phone"
+    }
+  ],
+  "body": [
+    {
+      "key": "id"
+    },
+    {
+      "key": "name"
+    },
+    {
+      "key": "username"
+    },
+    {
+      "key": "email",
+      "type": "email"
+    },
+    {
+      "key": "phone"
+    }
+  ]
+}

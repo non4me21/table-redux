@@ -1,0 +1,115 @@
+@import '@/styles/variables.scss';
+
+.TableComponent {
+  display: flex;
+  flex-direction: column;
+
+  .Buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    .Switch {
+      span {
+        font-size: 12px;
+      }
+      display: flex;
+      flex-direction: column;
+
+    }
+  }
+
+  .Button {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
+    background-color: $seaGreen;
+    color: $white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $seaGreen;
+      border-color: $seaGreen;
+    }
+  }
+
+
+  .TableWrapper {
+    border: 2px solid $lightPurple;
+    border-radius: 5px;
+    text-align: left;
+  
+    table {
+      border-collapse: collapse;
+      th, td {
+        padding: 5px 10px;
+      }
+  
+      th {
+        border-bottom: 1px solid $gray;
+  
+        .HeaderContent {
+          display: flex;
+          flex-direction: column;
+  
+          .HeaderInput {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+
+            .FilterIcon {
+              font-size: 14px;
+            }
+
+            .ClearIcon {
+              font-size: 14px;
+
+              &:hover {
+                cursor: pointer;
+                color: $seaGreen;
+              }
+            }
+            input {
+              width: 70%;
+              border: none;
+              background-color: $lightGray;
+              padding: 3px;
+              font-size: 12px;
+    
+              &:focus-visible {
+                outline: $seaGreen auto 1px;
+              }
+            }
+          }
+        }
+      }
+  
+      tbody {
+        tr:nth-child(odd) {
+          background-color: $lightGray;
+        }
+  
+        tr:hover {
+          background-color: rgb(255, 255, 230);
+        }
+
+        td.LoadingCell {
+          text-align: center;
+          padding: 50px;
+
+          .Loading {
+            color: $seaGreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,14 @@
+.Section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &.centered {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.padding {
+    padding: 20px;
+  }
+}
