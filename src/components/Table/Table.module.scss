@@ -10,13 +10,13 @@
     align-items: center;
     gap: 10px;
 
-    .Switch {
+    .SwitchWrapper {
+      display: flex;
+      flex-direction: column;
+      
       span {
         font-size: 12px;
       }
-      display: flex;
-      flex-direction: column;
-
     }
   }
 
@@ -44,6 +44,7 @@
     border: 2px solid $lightPurple;
     border-radius: 5px;
     text-align: left;
+    overflow-x: auto;
   
     table {
       border-collapse: collapse;
@@ -118,4 +119,10 @@
   }
 }
 
+}
+
+@media screen and (max-width: 768px) {
+  .TableComponent {
+    width: 100%;
+  }
 }

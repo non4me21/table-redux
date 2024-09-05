@@ -86,21 +86,19 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
       })
       return rows
   }, [data])
-  console.log(isLoading)
-
 
   return (
     <div className={styles.TableComponent}>
       {title && <h1 className={styles.Title}>{title}</h1>}
       <div className={styles.Buttons}>
-        <div className={styles.Switch}>
+        <div className={styles.SwitchWrapper}>
           <span>API Delay</span>
-          <Switch  onChange={() => setDelayed(!isDelayed)}/>
+          <Switch className={styles.Switch}  onChange={() => setDelayed(!isDelayed)}/>
         </div>
         <div className={styles.Button} onClick={() => dispatch(clearFilters())}>Clear filters</div>
       </div>
       <div className={styles.TableWrapper}>
-        <table className={styles.Title}>
+        <table>
           <thead>
             <tr>
               {headers}
