@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Section centered padding>
-        <Table title='Tabela użytkowników' tableConfig={tableConfig as TableConfig}/>
+        <Table title='Users Table' tableConfig={tableConfig as TableConfig}/>
       </Section>
     </>
   )
