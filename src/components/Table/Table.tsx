@@ -11,9 +11,10 @@ import { CircularProgress, Switch } from '@mui/material';
 
 const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig}) => {
 
-  const [debouncedFilters, setDebouncedFilters] = useState<{[key: string]: string}>()
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [debouncedFilters, setDebouncedFilters] = useState<{[key: string]: string}>({})
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [isDelayed, setDelayed] = useState<boolean>(false);
+  const [error, setError] = useState<any>();
 
   const data = useAppSelector((state) => state.table.data)
   const filters = useAppSelector((state) => state.table.filters)
@@ -33,18 +34,30 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
   useEffect(() => {
     const getData = async () => {
       setLoading(true)
-      const queryParams = new URLSearchParams(debouncedFilters).toString()
-      const data = await fetch(`https://jsonplaceholder.typicode.com/users?${queryParams}`)
-      const jsonData = await data.json()
-      if (isDelayed) {
-        setTimeout(() => {
-          dispatch(setData(jsonData));
+      try {
+        const queryParams = new URLSearchParams(debouncedFilters).toString()
+        console.log('fetch')
+        const data = await fetch(`https://jsonplaceholder.typicode.com/users?${queryParams}`)
+        if (!data.ok) {
+          setError({message: 'Server Error'})
           setLoading(false);
-        }, 3000)
-      } else {
-        dispatch(setData(jsonData))
-        setLoading(false);
+          return;
+        }
+        const jsonData = await data.json()
+        if (isDelayed) {
+          setTimeout(() => {
+            dispatch(setData(jsonData));
+            setLoading(false);
+          }, 3000)
+        } else {
+          dispatch(setData(jsonData))
+          setLoading(false);
+        }
+      } catch (error) {
+        setError(error)
+        setLoading(false)
       }
+      
     }
       getData();
   }, [debouncedFilters])
@@ -91,6 +104,28 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
       return rows
   }, [data])
 
+  let bodyContent: any = body
+
+  if (isLoading) {
+    bodyContent = <tr>
+    <td className={styles.InfoCell} colSpan={tableConfig.headers.length}>
+      <CircularProgress className={styles.Loading}/>
+    </td>
+  </tr>
+  }else if (error) {
+    bodyContent = <tr>
+    <td className={styles.InfoCell} colSpan={tableConfig.headers.length}>
+      {`Error ${error.message ? `: ${error.message}`: ''}`}
+    </td>
+  </tr>
+  } else if (body.length === 0) {
+    bodyContent =  <tr>
+    <td className={styles.InfoCell} colSpan={tableConfig.headers.length}>
+      No data to display
+    </td>
+  </tr>
+  }
+
   return (
     <div className={styles.TableComponent}>
       {title && <h1 className={styles.Title}>{title}</h1>}
@@ -109,14 +144,7 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
             </tr>
           </thead>
           <tbody>
-            {isLoading ? 
-            <tr>
-              <td className={styles.LoadingCell} colSpan={tableConfig.headers.length}>
-                <CircularProgress className={styles.Loading}/>
-              </td>
-            </tr>
-            : 
-            body}
+            {bodyContent}
           </tbody>
         </table>
       </div>
