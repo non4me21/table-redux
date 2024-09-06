@@ -58,8 +58,12 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
   };
     
   const headers = useMemo(() => tableConfig.headers.map(header => {
+    let style;
+    if (header.style) {
+      style = header.style
+    }
     return (
-  <th key={header.key}>
+  <th key={header.key} style={style}>
     <div className={styles.HeaderContent}>
       {header.name}
       <div className={styles.HeaderInput}>

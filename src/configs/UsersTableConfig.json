@@ -2,7 +2,8 @@
   "headers": [
     {
       "name": "ID",
-      "key": "id"
+      "key": "id",
+      "style": {"minWidth": "50px"}
     },
     {
       "name": "Name",
@@ -18,7 +19,8 @@
     },
     {
       "name": "Phone Number",
-      "key": "phone"
+      "key": "phone",
+      "style": {"minWidth": "150px"}
     }
   ],
   "body": [

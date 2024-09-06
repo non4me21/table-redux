@@ -1,6 +1,7 @@
 export interface Header {
   name: string;
   key: string;
+  style?: {[key: string]: string};
 }
 
 export type CellType = 'email' | 'phone'

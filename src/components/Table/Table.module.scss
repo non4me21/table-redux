@@ -78,7 +78,7 @@
             }
             input {
               width: 70%;
-              border: none;
+              border: 1px solid $lightPurple;
               background-color: $lightGray;
               padding: 3px;
               font-size: 12px;
@@ -97,7 +97,7 @@
         }
   
         tr:hover {
-          background-color: rgb(255, 255, 230);
+          background-color: $yellowHover;
         }
 
         td {
@@ -111,7 +111,7 @@
           }
 
           a.email {
-            color: $seaGreen
+            color: $darkSeaGreen
           }
         }
 
