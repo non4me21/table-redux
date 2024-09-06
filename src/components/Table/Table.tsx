@@ -36,7 +36,6 @@ const Table = ({title, tableConfig}: {title?: string, tableConfig: TableConfig})
       setLoading(true)
       try {
         const queryParams = new URLSearchParams(debouncedFilters).toString()
-        console.log('fetch')
         const data = await fetch(`https://jsonplaceholder.typicode.com/users?${queryParams}`)
         if (!data.ok) {
           setError({message: 'Server Error'})
